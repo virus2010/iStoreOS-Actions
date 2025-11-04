@@ -13,11 +13,11 @@ on:
       ipaddr:
         description: '请输入管理IP（静态地址时必填）'
         required: true
-        default: '192.168.68.21'
+        default: '192.168.5.88'
       gateway:
         description: '请输入默认网关（静态地址时必填）'
         required: true
-        default: '192.168.68.1'
+        default: '192.168.5.1'
 
 env:
   VERSION: 24.10.4
@@ -43,8 +43,8 @@ jobs:
            echo "删除网络设置-dhcp"
            sed -i '34,111d' "$CONFIG_PATH"
            echo "替换默认配置"
-           sed -i "/ipaddr/s/192.168.68.21/${{ inputs.ipaddr }}/g" "$CONFIG_PATH"
-           sed -i "/gateway/s/192.168.68.1/${{ inputs.gateway }}/g" "$CONFIG_PATH"
+           sed -i "/ipaddr/s/192.168.5.88/${{ inputs.ipaddr }}/g" "$CONFIG_PATH"
+           sed -i "/gateway/s/192.168.5.1/${{ inputs.gateway }}/g" "$CONFIG_PATH"
         else
            echo "删除网络设置-static"
            sed -i '26,32d' "$CONFIG_PATH"
