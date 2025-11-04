@@ -465,7 +465,7 @@ PACKAGES="$PACKAGES perlbase-time"
 PACKAGES="$PACKAGES filebrowser luci-app-filebrowser-go luci-i18n-filebrowser-go-zh-cn"
 PACKAGES="$PACKAGES luci-app-amlogic luci-i18n-amlogic-zh-cn"
 PACKAGES="$PACKAGES lucky luci-app-lucky luci-i18n-lucky-zh-cn"
-PACKAGES="$PACKAGES openlist2 luci-app-openlist2 luci-i18n-openlist2-zh-cn"
+#PACKAGES="$PACKAGES openlist2 luci-app-openlist2 luci-i18n-openlist2-zh-cn"
 PACKAGES="$PACKAGES luci-app-ramfree luci-i18n-ramfree-zh-cn"
 #PACKAGES="$PACKAGES luci-app-adguardhome luci-i18n-adguardhome-zh-cn"
 
@@ -474,9 +474,9 @@ PACKAGES="$PACKAGES ruby ruby-pstore ruby-psych ruby-yaml"
 
 # 追加自定义包
 PACKAGES="$PACKAGES $CUSTOM_PACKAGES"
-PACKAGES="$PACKAGES luci-app-openclash"
-PACKAGES="$PACKAGES mosdns luci-app-mosdns luci-i18n-mosdns-zh-cn"
-PACKAGES="$PACKAGES vlmcsd luci-app-vlmcsd luci-i18n-vlmcsd-zh-cn"
+#PACKAGES="$PACKAGES luci-app-openclash"
+#PACKAGES="$PACKAGES mosdns luci-app-mosdns luci-i18n-mosdns-zh-cn"
+#PACKAGES="$PACKAGES vlmcsd luci-app-vlmcsd luci-i18n-vlmcsd-zh-cn"
 
 # 构建镜像
 echo "开始构建......打印所有包名===="
