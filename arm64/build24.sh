@@ -175,6 +175,7 @@ PACKAGES="$PACKAGES luci-proto-ipv6"  # 修复 LuCI 网络配置页面的依赖�
 PACKAGES="$PACKAGES coreutils-nohup"  # 修复 netspeedtest 依赖
 PACKAGES="$PACKAGES kmod-crypto-core" # 核心加密模块 (修复 kmod-crypto-core 缺失)
 PACKAGES="$PACKAGES kmod-nf-core"     # 核心防火墙模块 (修复 kmod-nf-core 缺失)
+
 # --------------------------------------------------------
 # 核心驱动模块 (RK3566 和 RTL8211F 必须保留)
 # --------------------------------------------------------
@@ -472,6 +473,20 @@ PACKAGES="$PACKAGES wsdd2"
 PACKAGES="$PACKAGES zram-swap"
 PACKAGES="$PACKAGES -libustream-mbedtls"
 PACKAGES="$PACKAGES -luci-app-netspeedtest"
+
+# 强制排除所有干扰项 (重点解决您的编译失败问题)
+# --------------------------------------------------------
+PACKAGES="$PACKAGES \
+-rtl8192cu-firmware -rtl8192de-firmware -rtl8192se-firmware -rtl8723de-firmware -rtl8812a-firmware -rtl8821a-firmware -rtl8821ae-firmware -rtl8821ce-firmware -rtl8822be-firmware -rtl8822ce-firmware -rtl8851be-firmware -rtl8852ae-firmware -rtl8852be-firmware -rtl8852ce-firmware -rtl8922ae-firmware \
+-luci-i18n-unishare-zh-cn -luci-app-netspeedtest \
+-ddns-scripts -ddns-scripts-cloudflare -ddns-scripts-dnspod -ddns-scripts-services -ddns-scripts_aliyun -ddnsto -luci-app-ddns -luci-app-ddnsto \
+-odhcp6c -odhcpd-ipv6only \
+-kmod-vmxnet3 -kmod-bcmgenet -kmod-dwmac-sun8i -kmod-phy-smsc -kmod-phy-marvell-10g -kmod-mdio -kmod-mdio-bcm-unimac \
+-kmod-ath10k -kmod-ath11k -kmod-ath12k -kmod-mt76-core -kmod-mt7915e -kmod-mt7921e \
+-kmod-rtl8192cu -kmod-rtl8192de -kmod-rtw88 -kmod-rtw89 \
+-bnx2x-firmware -e100-firmware -qed-firmware -mwifiex-pcie-firmware \
+-r8152-firmware -r8169-firmware \
+"
 
 # 固件打包脚本必要依赖，其他依赖官方列表已集成
 PACKAGES="$PACKAGES perlbase-time"
