@@ -160,7 +160,7 @@ PACKAGES="$PACKAGES zram-swap"
 PACKAGES="$PACKAGES -libustream-mbedtls"
 
 # --------------------------------------------------------
-# 核心依赖修复包 (解决Error 255/1/2)
+# 核心依赖修复包 (解决Error )
 # --------------------------------------------------------
 PACKAGES="$PACKAGES -dnsmasq"         # 确保移除冲突的 dnsmasq 基础版 (如果存在)
 PACKAGES="$PACKAGES libiptext6-0"     # IPv6 核心库（即使不用，编译时也可能被依赖）
@@ -471,6 +471,7 @@ PACKAGES="$PACKAGES wpa-supplicant-openssl"
 PACKAGES="$PACKAGES wsdd2"
 PACKAGES="$PACKAGES zram-swap"
 PACKAGES="$PACKAGES -libustream-mbedtls"
+PACKAGES="$PACKAGES -luci-app-netspeedtest"
 
 # 固件打包脚本必要依赖，其他依赖官方列表已集成
 PACKAGES="$PACKAGES perlbase-time"
