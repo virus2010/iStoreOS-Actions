@@ -160,6 +160,20 @@ PACKAGES="$PACKAGES zram-swap"
 PACKAGES="$PACKAGES -libustream-mbedtls"
 
 # --------------------------------------------------------
+# 核心依赖修复包 (解决Error 255/1/2)
+# --------------------------------------------------------
+PACKAGES="$PACKAGES -dnsmasq"         # 确保移除冲突的 dnsmasq 基础版 (如果存在)
+PACKAGES="$PACKAGES libiptext6-0"     # IPv6 核心库（即使不用，编译时也可能被依赖）
+PACKAGES="$PACKAGES libiptext-nft0"   # Netfilter/NFTables 核心 IP 文本库
+PACKAGES="$PACKAGES libiptext0"       # Netfilter/NFTables 核心 IP 文本库
+PACKAGES="$PACKAGES liblua5.1.5"      # 核心 Lua 运行时库
+PACKAGES="$PACKAGES libubus-lua"      # UBUS (OpenWrt 进程通信) 的 Lua 绑定
+PACKAGES="$PACKAGES libuci-lua"       # UCI (OpenWrt 配置系统) 的 Lua 绑定
+PACKAGES="$PACKAGES ubus"             # UBUS 守护程序 (核心进程通信)
+PACKAGES="$PACKAGES libiwinfo-lua"    # LuCI 界面查询信息所需的 Lua 绑定
+PACKAGES="$PACKAGES luci-proto-ipv6"  # 修复 LuCI 网络配置页面的依赖链（即使不用，LuCI 也依赖）
+
+# --------------------------------------------------------
 # 核心驱动模块 (RK3566 和 RTL8211F 必须保留)
 # --------------------------------------------------------
 PACKAGES="$PACKAGES kmod-block2mtd"
