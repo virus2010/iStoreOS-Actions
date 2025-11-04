@@ -1044,9 +1044,9 @@ PACKAGES="$PACKAGES perlbase-time"
 #PACKAGES="$PACKAGES filebrowser luci-app-filebrowser-go luci-i18n-filebrowser-go-zh-cn"
 PACKAGES="$PACKAGES luci-app-amlogic luci-i18n-amlogic-zh-cn"
 #PACKAGES="$PACKAGES lucky luci-app-lucky luci-i18n-lucky-zh-cn"
-#PACKAGES="$PACKAGES openlist2 luci-app-openlist2 luci-i18n-openlist2-zh-cn"
+PACKAGES="$PACKAGES openlist2 luci-app-openlist2 luci-i18n-openlist2-zh-cn"
 PACKAGES="$PACKAGES luci-app-ramfree luci-i18n-ramfree-zh-cn"
-#PACKAGES="$PACKAGES luci-app-adguardhome luci-i18n-adguardhome-zh-cn"
+PACKAGES="$PACKAGES luci-app-adguardhome luci-i18n-adguardhome-zh-cn"
 
 # opc-rely依赖，其他会自动集成
 PACKAGES="$PACKAGES ruby ruby-pstore ruby-psych ruby-yaml"
@@ -1059,7 +1059,7 @@ echo "开始构建......打印所有包名===="
 echo "$PACKAGES"
 
 # 开始构建
-make -j1 V=s image PROFILE=generic PACKAGES="$PACKAGES" FILES="files"
+make image PROFILE=generic PACKAGES="$PACKAGES" FILES="files"
 
 if [ $? -ne 0 ]; then
     echo "$(date '+%Y-%m-%d %H:%M:%S') - Error: Build failed!"
