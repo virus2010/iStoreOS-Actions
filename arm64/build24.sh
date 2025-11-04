@@ -172,7 +172,9 @@ PACKAGES="$PACKAGES libuci-lua"       # UCI (OpenWrt 配置系统) 的 Lua 绑�
 PACKAGES="$PACKAGES ubus"             # UBUS 守护程序 (核心进程通信)
 PACKAGES="$PACKAGES libiwinfo-lua"    # LuCI 界面查询信息所需的 Lua 绑定
 PACKAGES="$PACKAGES luci-proto-ipv6"  # 修复 LuCI 网络配置页面的依赖链（即使不用，LuCI 也依赖）
-
+PACKAGES="$PACKAGES coreutils-nohup"  # 修复 netspeedtest 依赖
+PACKAGES="$PACKAGES kmod-crypto-core" # 核心加密模块 (修复 kmod-crypto-core 缺失)
+PACKAGES="$PACKAGES kmod-nf-core"     # 核心防火墙模块 (修复 kmod-nf-core 缺失)
 # --------------------------------------------------------
 # 核心驱动模块 (RK3566 和 RTL8211F 必须保留)
 # --------------------------------------------------------
@@ -391,7 +393,7 @@ PACKAGES="$PACKAGES luci-app-quickstart"
 PACKAGES="$PACKAGES luci-app-samba4"
 PACKAGES="$PACKAGES luci-app-store"
 PACKAGES="$PACKAGES luci-app-ttyd"
-PACKAGES="$PACKAGES luci-app-unishare"
+#PACKAGES="$PACKAGES luci-app-unishare"
 PACKAGES="$PACKAGES luci-app-wol"
 PACKAGES="$PACKAGES luci-base"
 PACKAGES="$PACKAGES luci-compat"
@@ -411,7 +413,7 @@ PACKAGES="$PACKAGES luci-i18n-package-manager-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-quickstart-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-samba4-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-ttyd-zh-cn"
-PACKAGES="$PACKAGES luci-i18n-unishare-zh-cn"
+#PACKAGES="$PACKAGES luci-i18n-unishare-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-wol-zh-cn"
 PACKAGES="$PACKAGES luci-lib-base"
 PACKAGES="$PACKAGES luci-lib-fs"
