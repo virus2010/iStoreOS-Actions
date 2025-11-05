@@ -1047,7 +1047,7 @@ PACKAGES="$PACKAGES perlbase-time"
 #PACKAGES="$PACKAGES openlist2 luci-app-openlist2 luci-i18n-openlist2-zh-cn"
 PACKAGES="$PACKAGES luci-app-ramfree luci-i18n-ramfree-zh-cn"
 #PACKAGES="$PACKAGES luci-app-adguardhome luci-i18n-adguardhome-zh-cn"
-PACKAGES="$PACKAGES vlmscd luci-app-vlmcsd"
+#PACKAGES="$PACKAGES vlmscd luci-app-vlmcsd"
 #PACKAGES="$PACKAGES luci-app-openclash"
 
 # opc-rely依赖，其他会自动集成
