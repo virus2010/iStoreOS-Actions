@@ -6,23 +6,23 @@ LOGFILE="/tmp/uci-defaults-log.txt"
 echo "Starting 99-custom.sh at $(date)" >> $LOGFILE
 
 if [ -z "$CUSTOM_PACKAGES" ]; then
-  echo "⚪️ 未选择 任何第三方软件包"
+    echo "⚪️ 未选择 任何第三方软件包"
 else
-  # ============= 同步第三方插件库==============
-  # 同步第三方软件仓库run/ipk
-  echo "🔄 正在同步第三方软件仓库 Cloning run file repo..."
-  git clone --depth=1 https://github.com/wukongdaily/store.git /tmp/store-run-repo
+    # ============= 同步第三方插件库==============
+    # 同步第三方软件仓库run/ipk
+    echo "🔄 正在同步第三方软件仓库 Cloning run file repo..."
+    git clone --depth=1 https://github.com/wukongdaily/store.git /tmp/store-run-repo
 
-  # 拷贝 run/arm64 下所有 run 文件和ipk文件 到 extra-packages 目录
-  mkdir -p extra-packages
-  cp -r /tmp/store-run-repo/run/arm64/* extra-packages/
+    # 拷贝 run/arm64 下所有 run 文件和ipk文件 到 extra-packages 目录
+    mkdir -p extra-packages
+    cp -r /tmp/store-run-repo/run/arm64/* extra-packages/
 
-  echo "✅ Run files copied to extra-packages:"
-  ls -lh extra-packages/*.run
-  # 解压并拷贝ipk到packages目录
-  sh prepare-packages.sh
-  echo "打印imagebuilder/packages目录结构"
-  ls -lah packages/ |grep partexp
+    echo "✅ Run files copied to extra-packages:"
+    ls -lh extra-packages/*.run
+    # 解压并拷贝ipk到packages目录
+    sh prepare-packages.sh
+    echo "打印imagebuilder/packages目录结构"
+    ls -lah packages/ |grep partexp
 fi
 
 # 输出调试信息
@@ -33,15 +33,11 @@ echo "$(date '+%Y-%m-%d %H:%M:%S') - 开始构建固件..."
 PACKAGES=""
 
 # ---------------------------------------------------------------------------------------
-# 【核心修复部分 - 强制确保这三个核心包存在！】
+# 【核心修复部分 - 清理空格 + 强制依赖】
 # ---------------------------------------------------------------------------------------
-# 即使 ImageBuilder 列表有，也要强制写入，解决 Cannot install package 错误
-# 核心系统
-PACKAGES="$PACKAGES uci libuci libuci-lua ubox libubox libubus libubus-lua"
-# 核心依赖修复
+# 解决 UCI 丢失 ('uci_load: not found') 和 kmod-core 缺失 (Cannot install package)
+PACKAGES="$PACKAGES uci libuci libuci-lua ubox libubox libubus libubus-lua libopenssl3 libiptext6-0"
 PACKAGES="$PACKAGES kmod-nf-core kmod-crypto-core coreutils-nohup"
-# Web 服务依赖修复
-PACKAGES="$PACKAGES uhttpd libopenssl3 libiptext6-0"
 
 
 # ---------------------------------------------------------------------------------------
@@ -56,11 +52,11 @@ PACKAGES="$PACKAGES kmod-dwmac-rockchip kmod-phy-realtek kmod-libphy kmod-mii km
 # --- LuCI App & I18N ---
 PACKAGES="$PACKAGES luci luci-base luci-compat luci-ssl luci-theme-argon luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system luci-light luci-lua-runtime luci-app-argon-config luci-app-cifs-mount luci-app-cpufreq luci-app-diskman luci-app-filetransfer luci-app-firewall luci-app-linkease luci-app-mergerfs luci-app-nfs luci-app-ota luci-app-package-manager luci-app-quickstart luci-app-samba4 luci-app-store luci-app-ttyd luci-app-wol"
 PACKAGES="$PACKAGES luci-i18n-argon-config-zh-cn luci-i18n-argon-zh-cn luci-i18n-base-zh-cn luci-i18n-cifs-mount-zh-cn luci-i18n-cpufreq-zh-cn luci-i18n-diskman-zh-cn luci-i18n-filetransfer-zh-cn luci-i18n-firewall-zh-cn luci-i18n-linkease-zh-cn luci-i18n-mergerfs-zh-cn luci-i18n-nfs-zh-cn luci-i18n-ota-zh-cn luci-i18n-package-manager-zh-cn luci-i18n-quickstart-zh-cn luci-i18n-samba4-zh-cn luci-i18n-ttyd-zh-cn luci-i18n-wol-zh-cn"
-PACKAGES="$PACKAGES luci-proto-ppp luci-proto-external luci-proto-wireguard" 
+PACKAGES="$PACKAGES luci-proto-ppp luci-proto-external luci-proto-wireguard"
 
 # --- 第三方可选插件 ---
 PACKAGES="$PACKAGES luci-app-ramfree luci-i18n-ramfree-zh-cn"
-PACKAGES="$PACKAGES vlmscd luci-app-vlmcsd" 
+PACKAGES="$PACKAGES vlmscd luci-app-vlmcsd"
 PACKAGES="$PACKAGES luci-app-openclash"
 
 # --- 强制排除所有不需要和冲突的包 (重点清理所有冲突和冗余模块) ---
@@ -76,6 +72,7 @@ PACKAGES="$PACKAGES \
 -docker -luci-lib-docker -containerd -runc -tini \
 -perl -ruby \
 -luci-i18n-unishare-zh-cn -luci-app-unishare \
+-luci-i18n-upnp-zh-cn -luci-app-upnp \
 "
 
 # 追加自定义包
