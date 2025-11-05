@@ -56,8 +56,8 @@ PACKAGES="$PACKAGES luci-proto-ppp luci-proto-external luci-proto-wireguard"
 
 # --- 第三方可选插件 ---
 PACKAGES="$PACKAGES luci-app-ramfree luci-i18n-ramfree-zh-cn"
-PACKAGES="$PACKAGES vlmscd luci-app-vlmcsd"
-PACKAGES="$PACKAGES luci-app-openclash"
+#PACKAGES="$PACKAGES vlmscd luci-app-vlmcsd"
+#PACKAGES="$PACKAGES luci-app-openclash"
 
 # --- 强制排除所有不需要和冲突的包 (重点清理所有冲突和冗余模块) ---
 PACKAGES="$PACKAGES \
