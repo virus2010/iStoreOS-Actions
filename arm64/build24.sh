@@ -34,6 +34,13 @@ echo "$(date '+%Y-%m-%d %H:%M:%S') - 开始构建固件..."
 # 定义初始化变量
 PACKAGES=""
 
+# 核心系统
+PACKAGES="$PACKAGES uci libuci libuci-lua ubox libubox libubus libubus-lua" 
+# 核心依赖修复
+PACKAGES="$PACKAGES kmod-nf-core kmod-crypto-core coreutils-nohup"
+# Web 服务依赖修复
+PACKAGES="$PACKAGES uhttpd libopenssl3 libiptext6-0"
+
 # iStoreOS官方集成列表，若启用则打开注释
 #PACKAGES="$PACKAGES adb"
 #PACKAGES="$PACKAGES adb-enablemodem"
