@@ -32,12 +32,12 @@ echo "$(date '+%Y-%m-%d %H:%M:%S') - 开始构建固件..."
 # 定义初始化变量
 PACKAGES=""
 
-# ---------------------------------------------------------------------------------------
-# 【核心修复部分 - 清理空格 + 强制依赖】
-# ---------------------------------------------------------------------------------------
-# 解决 UCI 丢失 ('uci_load: not found') 和 kmod-core 缺失 (Cannot install package)
-PACKAGES="$PACKAGES uci libuci libuci-lua ubox libubox libubus libubus-lua libopenssl3 libiptext6-0"
+# 核心系统
+PACKAGES="$PACKAGES uci libuci libuci-lua ubox libubox libubus libubus-lua"
+# 核心依赖修复
 PACKAGES="$PACKAGES kmod-nf-core kmod-crypto-core coreutils-nohup"
+# Web 服务依赖修复
+PACKAGES="$PACKAGES uhttpd libopenssl3 libiptext6-0"
 
 
 # ---------------------------------------------------------------------------------------
@@ -73,6 +73,7 @@ PACKAGES="$PACKAGES \
 -perl -ruby \
 -luci-i18n-unishare-zh-cn -luci-app-unishare \
 -luci-i18n-upnp-zh-cn -luci-app-upnp \
+-dnsmasq \
 "
 
 # 追加自定义包
