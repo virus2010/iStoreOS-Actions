@@ -50,15 +50,8 @@ PACKAGES="$PACKAGES -containerd -docker -dockerd -luci-lib-docker -runc -tini -l
 PACKAGES="$PACKAGES $CUSTOM_PACKAGES"
 
 
-# -----------------------------------------------------------
-# 【调试步骤：开启详细日志】
-# -----------------------------------------------------------
-echo "开始构建......打印所有包名===="
-echo "$PACKAGES"
-
 # 开始构建
-# 强制单线程详细日志 V=s
-make -j1 V=s image PROFILE=generic PACKAGES="$PACKAGES" FILES="files"
+make image PROFILE=generic PACKAGES="$PACKAGES" FILES="files"
 
 if [ $? -ne 0 ]; then
     echo "$(date '+%Y-%m-%d %H:%M:%S') - Error: Build failed!"
