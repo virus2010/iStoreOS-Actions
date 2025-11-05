@@ -8,21 +8,21 @@ echo "Starting 99-custom.sh at $(date)" >> $LOGFILE
 if [ -z "$CUSTOM_PACKAGES" ]; then
   echo "⚪️ 未选择 任何第三方软件包"
 else
-  # ============= 同步第三方插件库==============
-  # 同步第三方软件仓库run/ipk
-  echo "🔄 正在同步第三方软件仓库 Cloning run file repo..."
-  git clone --depth=1 https://github.com/wukongdaily/store.git /tmp/store-run-repo
+  # ============= 同步第三方插件库==============
+  # 同步第三方软件仓库run/ipk
+  echo "🔄 正在同步第三方软件仓库 Cloning run file repo..."
+  git clone --depth=1 https://github.com/wukongdaily/store.git /tmp/store-run-repo
 
-  # 拷贝 run/arm64 下所有 run 文件和ipk文件 到 extra-packages 目录
-  mkdir -p extra-packages
-  cp -r /tmp/store-run-repo/run/arm64/* extra-packages/
+  # 拷贝 run/arm64 下所有 run 文件和ipk文件 到 extra-packages 目录
+  mkdir -p extra-packages
+  cp -r /tmp/store-run-repo/run/arm64/* extra-packages/
 
-  echo "✅ Run files copied to extra-packages:"
-  ls -lh extra-packages/*.run
-  # 解压并拷贝ipk到packages目录
-  sh prepare-packages.sh
-  echo "打印imagebuilder/packages目录结构"
-  ls -lah packages/ |grep partexp
+  echo "✅ Run files copied to extra-packages:"
+  ls -lh extra-packages/*.run
+  # 解压并拷贝ipk到packages目录
+  sh prepare-packages.sh
+  echo "打印imagebuilder/packages目录结构"
+  ls -lah packages/ |grep partexp
 fi
 
 # 输出调试信息
@@ -947,8 +947,8 @@ echo "$PACKAGES"
 make image PROFILE=generic PACKAGES="$PACKAGES" FILES="files"
 
 if [ $? -ne 0 ]; then
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - Error: Build failed!"
-    exit 1
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - Error: Build failed!"
+    exit 1
 fi
 
 echo "$(date '+%Y-%m-%d %H:%M:%S') - 构建成功."
