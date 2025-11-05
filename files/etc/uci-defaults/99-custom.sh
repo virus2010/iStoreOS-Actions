@@ -25,9 +25,9 @@ uci commit luci
 
 # 【网络设置-static】
 uci set network.lan.proto='static'
-uci set network.lan.ipaddr='192.168.5.88'
+uci set network.lan.ipaddr='192.168.68.88'
 uci set network.lan.netmask='255.255.255.0'
-uci set network.lan.gateway='192.168.5.1'
+uci set network.lan.gateway='192.168.68.1'
 uci set network.lan.dns='223.5.5.5'
 uci commit network
 
@@ -84,9 +84,9 @@ elif [ "$count" -gt 1 ]; then
     uci set network.wan.proto='dhcp'
 	
     # 配置WAN6
-    uci set network.wan6=interface
-    uci set network.wan6.device="$wan_ifname"
-    uci set network.wan6.proto='dhcpv6'
+    #uci set network.wan6=interface
+    #uci set network.wan6.device="$wan_ifname"
+    #uci set network.wan6.proto='dhcpv6'
 	
     # 查找br-lan设备section
     section=$(uci show network | awk -F '[.=]' '/\.@?device\[\d+\]\.name=.br-lan.$/ {print $2; exit}')
