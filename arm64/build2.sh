@@ -36,8 +36,12 @@ PACKAGES=""
 # 【核心修复部分 - 强制确保这三个核心包存在！】
 # ---------------------------------------------------------------------------------------
 # 即使 ImageBuilder 列表有，也要强制写入，解决 Cannot install package 错误
-PACKAGES="$PACKAGES uci libuci libuci-lua ubox libubox libubus libubus-lua libopenssl3 libiptext6-0" 
-PACKAGES="$PACKAGES kmod-nf-core kmod-crypto-core coreutils-nohup" # <-- 解决致命缺失！
+# 核心系统
+PACKAGES="$PACKAGES uci libuci libuci-lua ubox libubox libubus libubus-lua"
+# 核心依赖修复
+PACKAGES="$PACKAGES kmod-nf-core kmod-crypto-core coreutils-nohup"
+# Web 服务依赖修复
+PACKAGES="$PACKAGES uhttpd libopenssl3 libiptext6-0"
 
 
 # ---------------------------------------------------------------------------------------
@@ -85,7 +89,7 @@ echo "开始构建......打印所有包名===="
 echo "$PACKAGES"
 
 # 开始构建
-make -j1 V=s image PROFILE=generic PACKAGES="$PACKAGES" FILES="files"
+make image PROFILE=generic PACKAGES="$PACKAGES" FILES="files"
 
 if [ $? -ne 0 ]; then
     echo "$(date '+%Y-%m-%d %H:%M:%S') - Error: Build failed!"
